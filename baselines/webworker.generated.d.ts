@@ -593,6 +593,9 @@ interface AbortController {
 
 declare var AbortController: {
     prototype: AbortController;
+    /**
+     * Returns a new controller whose signal is set to a newly created AbortSignal object.
+     */
     new(): AbortController;
 };
 
@@ -984,6 +987,9 @@ interface CustomEvent<T = any> extends Event {
 
 declare var CustomEvent: {
     prototype: CustomEvent;
+    /**
+     * Works analogously to the constructor for Event except that the eventInitDict argument now allows for setting the detail attribute too.
+     */
     new<T>(typeArg: string, eventInitDict?: CustomEventInit<T>): CustomEvent<T>;
 };
 
@@ -1405,6 +1411,9 @@ interface Event {
 
 declare var Event: {
     prototype: Event;
+    /**
+     * Returns a new event whose type attribute value is set to type. The eventInitDict argument allows for setting the bubbles and cancelable attributes via object members of the same name.
+     */
     new(type: string, eventInitDict?: EventInit): Event;
     readonly AT_TARGET: number;
     readonly BUBBLING_PHASE: number;
@@ -1487,6 +1496,9 @@ interface EventTarget {
 
 declare var EventTarget: {
     prototype: EventTarget;
+    /**
+     * Creates a new EventTarget object, which can be used by developers to dispatch and listen for events.
+     */
     new(): EventTarget;
 };
 

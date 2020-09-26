@@ -1921,6 +1921,9 @@ interface AbortController {
 
 declare var AbortController: {
     prototype: AbortController;
+    /**
+     * Returns a new controller whose signal is set to a newly created AbortSignal object.
+     */
     new(): AbortController;
 };
 
@@ -3566,6 +3569,9 @@ interface Comment extends CharacterData {
 
 declare var Comment: {
     prototype: Comment;
+    /**
+     * Returns a new Comment node whose data is data.
+     */
     new(data?: string): Comment;
 };
 
@@ -3702,6 +3708,9 @@ interface CustomEvent<T = any> extends Event {
 
 declare var CustomEvent: {
     prototype: CustomEvent;
+    /**
+     * Works analogously to the constructor for Event except that the eventInitDict argument now allows for setting the detail attribute too.
+     */
     new<T>(typeArg: string, eventInitDict?: CustomEventInit<T>): CustomEvent<T>;
 };
 
@@ -4849,6 +4858,9 @@ interface Document extends Node, DocumentAndElementEventHandlers, DocumentOrShad
 
 declare var Document: {
     prototype: Document;
+    /**
+     * Returns a new document.
+     */
     new(): Document;
 };
 
@@ -4957,6 +4969,9 @@ interface DocumentFragment extends Node, NonElementParentNode, ParentNode {
 
 declare var DocumentFragment: {
     prototype: DocumentFragment;
+    /**
+     * Returns a new DocumentFragment node.
+     */
     new(): DocumentFragment;
 };
 
@@ -5315,6 +5330,9 @@ interface Event {
 
 declare var Event: {
     prototype: Event;
+    /**
+     * Returns a new event whose type attribute value is set to type. The eventInitDict argument allows for setting the bubbles and cancelable attributes via object members of the same name.
+     */
     new(type: string, eventInitDict?: EventInit): Event;
     readonly AT_TARGET: number;
     readonly BUBBLING_PHASE: number;
@@ -5397,6 +5415,9 @@ interface EventTarget {
 
 declare var EventTarget: {
     prototype: EventTarget;
+    /**
+     * Creates a new EventTarget object, which can be used by developers to dispatch and listen for events.
+     */
     new(): EventTarget;
 };
 
@@ -10594,6 +10615,9 @@ interface MutationObserver {
 
 declare var MutationObserver: {
     prototype: MutationObserver;
+    /**
+     * Constructs a MutationObserver object and sets its callback to callback. The callback is invoked with a list of MutationRecord objects as first argument and the constructed MutationObserver object as second argument. It is invoked after nodes registered with the observe() method, are mutated.
+     */
     new(callback: MutationCallback): MutationObserver;
 };
 
@@ -12467,6 +12491,9 @@ interface Range extends AbstractRange {
 
 declare var Range: {
     prototype: Range;
+    /**
+     * Returns a new live range.
+     */
     new(): Range;
     readonly END_TO_END: number;
     readonly END_TO_START: number;
@@ -15284,6 +15311,9 @@ interface StaticRange extends AbstractRange {
 
 declare var StaticRange: {
     prototype: StaticRange;
+    /**
+     * Returns a new range object that does not update when the node tree mutates.
+     */
     new(init: StaticRangeInit): StaticRange;
 };
 
@@ -15464,6 +15494,9 @@ interface Text extends CharacterData, Slottable {
 
 declare var Text: {
     prototype: Text;
+    /**
+     * Returns a new Text node whose data is data.
+     */
     new(data?: string): Text;
 };
 
