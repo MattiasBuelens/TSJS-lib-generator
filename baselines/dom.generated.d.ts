@@ -3918,6 +3918,9 @@ interface DOMParser {
 
 declare var DOMParser: {
     prototype: DOMParser;
+    /**
+     * Constructs a new DOMParser object.
+     */
     new(): DOMParser;
 };
 
