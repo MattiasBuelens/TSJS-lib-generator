@@ -39,10 +39,6 @@ const forceKeepAlive: Record<string, string[]> = {
   WebKitCSSMatrix: [],
   WindowEventHandlers: ["onmessage"],
 
-  // Widely supported but without being correctly exposed to global
-  ReadableStreamDefaultReader: ["closed", "cancel", "read", "releaseLock"],
-  ReadableStreamDefaultController: ["desiredSize", "close", "enqueue", "error"],
-
   // Things that indeed are not widely supported enough
   // but they already have been in lib.d.ts for a while
   AbstractRange: [
@@ -93,6 +89,10 @@ const forceKeepAlive: Record<string, string[]> = {
   HTMLCanvasElement: ["transferControlToOffscreen"],
   HTMLDialogElement: ["open", "returnValue", "close", "show", "showModal"],
   InputDeviceInfo: ["getCapabilities"],
+  ReadableByteStreamController: ["byobRequest", "desiredSize", "close", "enqueue", "error"],
+  ReadableStreamBYOBReader: ["closed", "cancel", "read", "releaseLock"],
+  ReadableStreamBYOBReadResult: ["done", "value"],
+  ReadableStreamBYOBRequest: ["view", "respond", "respondWithNewView"],
   ResizeObserverSize: ["blockSize", "inlineSize"],
   Request: ["keepalive"],
   RTCDtlsTransport: [
