@@ -47,8 +47,6 @@
     "enums": {
         "enum": {
             "ClientType": null,
-            "ReadableStreamReaderMode": null,
-            "ReadableStreamType": null,
             "RequestType": null
         }
     },
@@ -440,20 +438,11 @@
                 }
             },
             "ObjectURLOptions": null,
-            "ReadableStreamBYOBReadResult": null,
             "ReadableStreamDefaultReadResult": null,
-            "ReadableStreamGetReaderOptions": null,
             "RTCIceGatherOptions": {
                 "members": {
                     "member": {
                         "portRange": null
-                    }
-                }
-            },
-            "UnderlyingSource": {
-                "members": {
-                    "member": {
-                        "autoAllocateChunkSize": null
                     }
                 }
             }
