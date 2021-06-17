@@ -2167,8 +2167,6 @@ interface ApplicationCache extends EventTarget {
     /** @deprecated */
     readonly status: number;
     /** @deprecated */
-    abort(): void;
-    /** @deprecated */
     swapCache(): void;
     /** @deprecated */
     update(): void;
@@ -3463,9 +3461,6 @@ interface CanvasUserInterface {
 }
 
 interface CaretPosition {
-    readonly offset: number;
-    readonly offsetNode: Node;
-    getClientRect(): DOMRect | null;
 }
 
 declare var CaretPosition: {
@@ -4587,7 +4582,6 @@ interface Document extends Node, DocumentAndElementEventHandlers, DocumentOrShad
     adoptNode<T extends Node>(source: T): T;
     /** @deprecated */
     captureEvents(): void;
-    caretPositionFromPoint(x: number, y: number): CaretPosition | null;
     /** @deprecated */
     caretRangeFromPoint(x: number, y: number): Range;
     /** @deprecated */
@@ -7478,12 +7472,6 @@ declare var HTMLMapElement: {
     new(): HTMLMapElement;
 };
 
-interface HTMLMarqueeElementEventMap extends HTMLElementEventMap {
-    "bounce": Event;
-    "finish": Event;
-    "start": Event;
-}
-
 /** Provides methods to manipulate <marquee> elements. */
 interface HTMLMarqueeElement extends HTMLElement {
     /** @deprecated */
@@ -7499,12 +7487,6 @@ interface HTMLMarqueeElement extends HTMLElement {
     /** @deprecated */
     loop: number;
     /** @deprecated */
-    onbounce: ((this: HTMLMarqueeElement, ev: Event) => any) | null;
-    /** @deprecated */
-    onfinish: ((this: HTMLMarqueeElement, ev: Event) => any) | null;
-    /** @deprecated */
-    onstart: ((this: HTMLMarqueeElement, ev: Event) => any) | null;
-    /** @deprecated */
     scrollAmount: number;
     /** @deprecated */
     scrollDelay: number;
@@ -7518,9 +7500,9 @@ interface HTMLMarqueeElement extends HTMLElement {
     start(): void;
     /** @deprecated */
     stop(): void;
-    addEventListener<K extends keyof HTMLMarqueeElementEventMap>(type: K, listener: (this: HTMLMarqueeElement, ev: HTMLMarqueeElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+    addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLMarqueeElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-    removeEventListener<K extends keyof HTMLMarqueeElementEventMap>(type: K, listener: (this: HTMLMarqueeElement, ev: HTMLMarqueeElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+    removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLMarqueeElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
     removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
 }
 
@@ -9529,10 +9511,6 @@ declare var ImageBitmap: {
 
 interface ImageBitmapRenderingContext {
     /**
-     * Returns the canvas element that the context is bound to.
-     */
-    readonly canvas: HTMLCanvasElement | OffscreenCanvas;
-    /**
      * Transfers the underlying bitmap data from imageBitmap to context, and the bitmap becomes the contents of the canvas element to which context is bound.
      */
     transferFromImageBitmap(bitmap: ImageBitmap | null): void;
@@ -10249,6 +10227,7 @@ declare var MediaStreamEvent: {
 
 interface MediaStreamTrackEventMap {
     "ended": Event;
+    "isolationchange": Event;
     "mute": Event;
     "unmute": Event;
 }
@@ -10257,10 +10236,12 @@ interface MediaStreamTrackEventMap {
 interface MediaStreamTrack extends EventTarget {
     enabled: boolean;
     readonly id: string;
+    readonly isolated: boolean;
     readonly kind: string;
     readonly label: string;
     readonly muted: boolean;
     onended: ((this: MediaStreamTrack, ev: Event) => any) | null;
+    onisolationchange: ((this: MediaStreamTrack, ev: Event) => any) | null;
     onmute: ((this: MediaStreamTrack, ev: Event) => any) | null;
     onunmute: ((this: MediaStreamTrack, ev: Event) => any) | null;
     readonly readyState: MediaStreamTrackState;
@@ -11107,16 +11088,6 @@ declare var OffscreenCanvas: {
     new(width: number, height: number): OffscreenCanvas;
 };
 
-interface OffscreenCanvasRenderingContext2D extends CanvasCompositing, CanvasDrawImage, CanvasDrawPath, CanvasFillStrokeStyles, CanvasFilters, CanvasImageData, CanvasImageSmoothing, CanvasPath, CanvasPathDrawingStyles, CanvasRect, CanvasShadowStyles, CanvasState, CanvasText, CanvasTextDrawingStyles, CanvasTransform {
-    readonly canvas: OffscreenCanvas;
-    commit(): void;
-}
-
-declare var OffscreenCanvasRenderingContext2D: {
-    prototype: OffscreenCanvasRenderingContext2D;
-    new(): OffscreenCanvasRenderingContext2D;
-};
-
 /** The OscillatorNode interface represents a periodic waveform, such as a sine wave. It is an AudioScheduledSourceNode audio-processing module that causes a specified frequency of a given wave to be created—in effect, a constant tone. */
 interface OscillatorNode extends AudioScheduledSourceNode {
     readonly detune: AudioParam;
@@ -11305,7 +11276,6 @@ interface PaymentRequest extends EventTarget {
     onpaymentmethodchange: ((this: PaymentRequest, ev: Event) => any) | null;
     onshippingaddresschange: ((this: PaymentRequest, ev: Event) => any) | null;
     onshippingoptionchange: ((this: PaymentRequest, ev: Event) => any) | null;
-    readonly shippingAddress: PaymentAddress | null;
     readonly shippingOption: string | null;
     readonly shippingType: PaymentShippingType | null;
     abort(): Promise<void>;
@@ -11957,11 +11927,6 @@ declare var RTCDtmfSender: {
 };
 
 interface RTCError extends DOMException {
-    readonly errorDetail: RTCErrorDetailType;
-    readonly receivedAlert: number | null;
-    readonly sctpCauseCode: number | null;
-    readonly sdpLineNumber: number | null;
-    readonly sentAlert: number | null;
 }
 
 declare var RTCError: {
@@ -11980,6 +11945,7 @@ declare var RTCErrorEvent: {
 
 /** The RTCIceCandidate interface—part of the WebRTC API—represents a candidate Internet Connectivity Establishment (ICE) configuration which may be used to establish an RTCPeerConnection. */
 interface RTCIceCandidate {
+    readonly address: string | null;
     readonly candidate: string;
     readonly component: RTCIceComponent | null;
     readonly foundation: string | null;
@@ -12112,7 +12078,6 @@ interface RTCPeerConnection extends EventTarget {
     readonly iceConnectionState: RTCIceConnectionState;
     readonly iceGatheringState: RTCIceGatheringState;
     readonly idpErrorInfo: string | null;
-    readonly idpLoginUrl: string | null;
     readonly localDescription: RTCSessionDescription | null;
     onconnectionstatechange: ((this: RTCPeerConnection, ev: Event) => any) | null;
     ondatachannel: ((this: RTCPeerConnection, ev: RTCDataChannelEvent) => any) | null;
@@ -12458,10 +12423,6 @@ interface Request extends Body {
      * Returns request's subresource integrity metadata, which is a cryptographic hash of the resource being fetched. Its value consists of multiple hashes separated by whitespace. [SRI]
      */
     readonly integrity: string;
-    /**
-     * Returns a boolean indicating whether or not request is for a history navigation (a.k.a. back-foward navigation).
-     */
-    readonly isHistoryNavigation: boolean;
     /**
      * Returns a boolean indicating whether or not request is for a reload navigation.
      */
@@ -13774,6 +13735,8 @@ declare var SVGNumberList: {
 interface SVGPathElement extends SVGGraphicsElement {
     /** @deprecated */
     readonly pathSegList: SVGPathSegList;
+    /** @deprecated */
+    getPathSegAtLength(distance: number): number;
     getPointAtLength(distance: number): SVGPoint;
     getTotalLength(): number;
     addEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGPathElement, ev: SVGElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -14216,6 +14179,8 @@ interface SVGSVGElement extends SVGGraphicsElement, DocumentEvent, SVGFitToViewB
     readonly height: SVGAnimatedLength;
     onunload: ((this: SVGSVGElement, ev: Event) => any) | null;
     onzoom: ((this: SVGSVGElement, ev: SVGZoomEvent) => any) | null;
+    /** @deprecated */
+    readonly viewport: SVGRect;
     readonly width: SVGAnimatedLength;
     readonly x: SVGAnimatedLength;
     readonly y: SVGAnimatedLength;
@@ -14543,7 +14508,9 @@ declare var SVGUnitTypes: {
 
 /** Corresponds to the <use> element. */
 interface SVGUseElement extends SVGGraphicsElement, SVGURIReference {
+    readonly animatedInstanceRoot: SVGElementInstance | null;
     readonly height: SVGAnimatedLength;
+    readonly instanceRoot: SVGElementInstance | null;
     readonly width: SVGAnimatedLength;
     readonly x: SVGAnimatedLength;
     readonly y: SVGAnimatedLength;
@@ -14560,8 +14527,6 @@ declare var SVGUseElement: {
 
 /** Provides access to the properties of <view> elements, as well as methods to manipulate them. */
 interface SVGViewElement extends SVGElement, SVGFitToViewBox, SVGZoomAndPan {
-    /** @deprecated */
-    readonly viewTarget: SVGStringList;
     addEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGViewElement, ev: SVGElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
     removeEventListener<K extends keyof SVGElementEventMap>(type: K, listener: (this: SVGViewElement, ev: SVGElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
@@ -14594,6 +14559,26 @@ interface SVGZoomEvent extends UIEvent {
 declare var SVGZoomEvent: {
     prototype: SVGZoomEvent;
     new(): SVGZoomEvent;
+};
+
+interface ScopedCredential {
+    readonly id: ArrayBuffer;
+    readonly type: ScopedCredentialType;
+}
+
+declare var ScopedCredential: {
+    prototype: ScopedCredential;
+    new(): ScopedCredential;
+};
+
+interface ScopedCredentialInfo {
+    readonly credential: ScopedCredential;
+    readonly publicKey: CryptoKey;
+}
+
+declare var ScopedCredentialInfo: {
+    prototype: ScopedCredentialInfo;
+    new(): ScopedCredentialInfo;
 };
 
 /** A screen, usually the one on which the current window is being rendered, and is obtained using window.screen. */
@@ -15424,6 +15409,14 @@ interface TextMetrics {
     /**
      * Returns the measurement described below.
      */
+    readonly fontBoundingBoxAscent: number;
+    /**
+     * Returns the measurement described below.
+     */
+    readonly fontBoundingBoxDescent: number;
+    /**
+     * Returns the measurement described below.
+     */
     readonly width: number;
 }
 
@@ -15614,8 +15607,6 @@ declare var TimeRanges: {
 
 /** A single contact point on a touch-sensitive device. The contact point is commonly a finger or stylus and the device may be a touchscreen or trackpad. */
 interface Touch {
-    readonly altitudeAngle: number;
-    readonly azimuthAngle: number;
     readonly clientX: number;
     readonly clientY: number;
     readonly force: number;
@@ -15628,7 +15619,6 @@ interface Touch {
     readonly screenX: number;
     readonly screenY: number;
     readonly target: EventTarget;
-    readonly touchType: TouchType;
 }
 
 declare var Touch: {
@@ -19659,7 +19649,7 @@ type DOMHighResTimeStamp = number;
 type RenderingContext = CanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
 type HTMLOrSVGImageElement = HTMLImageElement | SVGImageElement;
 type CanvasImageSource = HTMLOrSVGImageElement | HTMLVideoElement | HTMLCanvasElement | ImageBitmap | OffscreenCanvas;
-type OffscreenRenderingContext = OffscreenCanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
+type OffscreenRenderingContext = ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
 type MessageEventSource = WindowProxy | MessagePort | ServiceWorker;
 type HTMLOrSVGScriptElement = HTMLScriptElement | SVGScriptElement;
 type ImageBitmapSource = CanvasImageSource | Blob | ImageData;
@@ -19829,6 +19819,7 @@ type ResidentKeyRequirement = "discouraged" | "preferred" | "required";
 type ResizeObserverBoxOptions = "border-box" | "content-box" | "device-pixel-content-box";
 type ResizeQuality = "high" | "low" | "medium" | "pixelated";
 type ResponseType = "basic" | "cors" | "default" | "error" | "opaque" | "opaqueredirect";
+type ScopedCredentialType = "ScopedCred";
 type ScrollBehavior = "auto" | "smooth";
 type ScrollLogicalPosition = "center" | "end" | "nearest" | "start";
 type ScrollRestoration = "auto" | "manual";

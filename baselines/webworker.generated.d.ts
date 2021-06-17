@@ -767,43 +767,6 @@ declare var CacheStorage: {
     new(): CacheStorage;
 };
 
-interface CanvasCompositing {
-    globalAlpha: number;
-    globalCompositeOperation: string;
-}
-
-interface CanvasDrawImage {
-    drawImage(image: CanvasImageSource, dx: number, dy: number): void;
-    drawImage(image: CanvasImageSource, dx: number, dy: number, dw: number, dh: number): void;
-    drawImage(image: CanvasImageSource, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number): void;
-}
-
-interface CanvasDrawPath {
-    beginPath(): void;
-    clip(fillRule?: CanvasFillRule): void;
-    clip(path: Path2D, fillRule?: CanvasFillRule): void;
-    fill(fillRule?: CanvasFillRule): void;
-    fill(path: Path2D, fillRule?: CanvasFillRule): void;
-    isPointInPath(x: number, y: number, fillRule?: CanvasFillRule): boolean;
-    isPointInPath(path: Path2D, x: number, y: number, fillRule?: CanvasFillRule): boolean;
-    isPointInStroke(x: number, y: number): boolean;
-    isPointInStroke(path: Path2D, x: number, y: number): boolean;
-    stroke(): void;
-    stroke(path: Path2D): void;
-}
-
-interface CanvasFillStrokeStyles {
-    fillStyle: string | CanvasGradient | CanvasPattern;
-    strokeStyle: string | CanvasGradient | CanvasPattern;
-    createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGradient;
-    createPattern(image: CanvasImageSource, repetition: string | null): CanvasPattern | null;
-    createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number, r1: number): CanvasGradient;
-}
-
-interface CanvasFilters {
-    filter: string;
-}
-
 /** An opaque object describing a gradient. It is returned by the methods CanvasRenderingContext2D.createLinearGradient() or CanvasRenderingContext2D.createRadialGradient(). */
 interface CanvasGradient {
     /**
@@ -819,19 +782,6 @@ declare var CanvasGradient: {
     new(): CanvasGradient;
 };
 
-interface CanvasImageData {
-    createImageData(sw: number, sh: number): ImageData;
-    createImageData(imagedata: ImageData): ImageData;
-    getImageData(sx: number, sy: number, sw: number, sh: number): ImageData;
-    putImageData(imagedata: ImageData, dx: number, dy: number): void;
-    putImageData(imagedata: ImageData, dx: number, dy: number, dirtyX: number, dirtyY: number, dirtyWidth: number, dirtyHeight: number): void;
-}
-
-interface CanvasImageSmoothing {
-    imageSmoothingEnabled: boolean;
-    imageSmoothingQuality: ImageSmoothingQuality;
-}
-
 interface CanvasPath {
     arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, anticlockwise?: boolean): void;
     arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void;
@@ -842,16 +792,6 @@ interface CanvasPath {
     moveTo(x: number, y: number): void;
     quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void;
     rect(x: number, y: number, w: number, h: number): void;
-}
-
-interface CanvasPathDrawingStyles {
-    lineCap: CanvasLineCap;
-    lineDashOffset: number;
-    lineJoin: CanvasLineJoin;
-    lineWidth: number;
-    miterLimit: number;
-    getLineDash(): number[];
-    setLineDash(segments: number[]): void;
 }
 
 /** An opaque object describing a pattern, based on an image, a canvas, or a video, created by the CanvasRenderingContext2D.createPattern() method. */
@@ -866,48 +806,6 @@ declare var CanvasPattern: {
     prototype: CanvasPattern;
     new(): CanvasPattern;
 };
-
-interface CanvasRect {
-    clearRect(x: number, y: number, w: number, h: number): void;
-    fillRect(x: number, y: number, w: number, h: number): void;
-    strokeRect(x: number, y: number, w: number, h: number): void;
-}
-
-interface CanvasShadowStyles {
-    shadowBlur: number;
-    shadowColor: string;
-    shadowOffsetX: number;
-    shadowOffsetY: number;
-}
-
-interface CanvasState {
-    restore(): void;
-    save(): void;
-}
-
-interface CanvasText {
-    fillText(text: string, x: number, y: number, maxWidth?: number): void;
-    measureText(text: string): TextMetrics;
-    strokeText(text: string, x: number, y: number, maxWidth?: number): void;
-}
-
-interface CanvasTextDrawingStyles {
-    direction: CanvasDirection;
-    font: string;
-    textAlign: CanvasTextAlign;
-    textBaseline: CanvasTextBaseline;
-}
-
-interface CanvasTransform {
-    getTransform(): DOMMatrix;
-    resetTransform(): void;
-    rotate(angle: number): void;
-    scale(x: number, y: number): void;
-    setTransform(a: number, b: number, c: number, d: number, e: number, f: number): void;
-    setTransform(transform?: DOMMatrix2DInit): void;
-    transform(a: number, b: number, c: number, d: number, e: number, f: number): void;
-    translate(x: number, y: number): void;
-}
 
 /** The Client interface represents an executable context such as a Worker, or a SharedWorker. Window clients are represented by the more-specific WindowClient. You can get Client/WindowClient objects from methods such as Clients.matchAll() and Clients.get(). */
 interface Client {
@@ -2176,10 +2074,6 @@ declare var ImageBitmap: {
 
 interface ImageBitmapRenderingContext {
     /**
-     * Returns the canvas element that the context is bound to.
-     */
-    readonly canvas: OffscreenCanvas;
-    /**
      * Transfers the underlying bitmap data from imageBitmap to context, and the bitmap becomes the contents of the canvas element to which context is bound.
      */
     transferFromImageBitmap(bitmap: ImageBitmap | null): void;
@@ -2458,16 +2352,6 @@ interface OffscreenCanvas extends EventTarget {
 declare var OffscreenCanvas: {
     prototype: OffscreenCanvas;
     new(width: number, height: number): OffscreenCanvas;
-};
-
-interface OffscreenCanvasRenderingContext2D extends CanvasCompositing, CanvasDrawImage, CanvasDrawPath, CanvasFillStrokeStyles, CanvasFilters, CanvasImageData, CanvasImageSmoothing, CanvasPath, CanvasPathDrawingStyles, CanvasRect, CanvasShadowStyles, CanvasState, CanvasText, CanvasTextDrawingStyles, CanvasTransform {
-    readonly canvas: OffscreenCanvas;
-    commit(): void;
-}
-
-declare var OffscreenCanvasRenderingContext2D: {
-    prototype: OffscreenCanvasRenderingContext2D;
-    new(): OffscreenCanvasRenderingContext2D;
 };
 
 /** This Canvas 2D API interface is used to declare a path that can then be used on a CanvasRenderingContext2D object. The path methods of the CanvasRenderingContext2D interface are also present on this interface, which gives you the convenience of being able to retain and replay your path whenever desired. */
@@ -2784,10 +2668,6 @@ interface Request extends Body {
      */
     readonly integrity: string;
     /**
-     * Returns a boolean indicating whether or not request is for a history navigation (a.k.a. back-foward navigation).
-     */
-    readonly isHistoryNavigation: boolean;
-    /**
      * Returns a boolean indicating whether or not request is for a reload navigation.
      */
     readonly isReloadNavigation: boolean;
@@ -2926,7 +2806,6 @@ interface ServiceWorkerGlobalScope extends WorkerGlobalScope {
     onpush: ((this: ServiceWorkerGlobalScope, ev: PushEvent) => any) | null;
     onsync: ((this: ServiceWorkerGlobalScope, ev: SyncEvent) => any) | null;
     readonly registration: ServiceWorkerRegistration;
-    readonly serviceWorker: ServiceWorker;
     skipWaiting(): Promise<void>;
     addEventListener<K extends keyof ServiceWorkerGlobalScopeEventMap>(type: K, listener: (this: ServiceWorkerGlobalScope, ev: ServiceWorkerGlobalScopeEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
@@ -3169,6 +3048,14 @@ interface TextMetrics {
      * Returns the measurement described below.
      */
     readonly actualBoundingBoxRight: number;
+    /**
+     * Returns the measurement described below.
+     */
+    readonly fontBoundingBoxAscent: number;
+    /**
+     * Returns the measurement described below.
+     */
+    readonly fontBoundingBoxDescent: number;
     /**
      * Returns the measurement described below.
      */
@@ -5333,6 +5220,7 @@ declare var WebSocket: {
 
 /** This ServiceWorker API interface represents the scope of a service worker client that is a document in a browser context, controlled by an active worker. The service worker client independently selects and uses a service worker for its own loading and sub-resources. */
 interface WindowClient extends Client {
+    readonly ancestorOrigins: ReadonlyArray<string>;
     readonly focused: boolean;
     readonly visibilityState: VisibilityState;
     focus(): Promise<WindowClient>;
@@ -5912,7 +5800,7 @@ type RequestInfo = Request | string;
 type BlobPart = BufferSource | Blob | string;
 type DOMHighResTimeStamp = number;
 type CanvasImageSource = ImageBitmap | OffscreenCanvas;
-type OffscreenRenderingContext = OffscreenCanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
+type OffscreenRenderingContext = ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
 type MessageEventSource = MessagePort | ServiceWorker;
 type ImageBitmapSource = CanvasImageSource | Blob | ImageData;
 type OnErrorEventHandler = OnErrorEventHandlerNonNull | null;
@@ -5949,12 +5837,6 @@ type IDBValidKey = number | string | Date | BufferSource | IDBArrayKey;
 type Transferable = ArrayBuffer | MessagePort | ImageBitmap | OffscreenCanvas;
 type ReadableStreamDefaultReadResult<T> = ReadableStreamDefaultReadValueResult<T> | ReadableStreamDefaultReadDoneResult;
 type BinaryType = "arraybuffer" | "blob";
-type CanvasDirection = "inherit" | "ltr" | "rtl";
-type CanvasFillRule = "evenodd" | "nonzero";
-type CanvasLineCap = "butt" | "round" | "square";
-type CanvasLineJoin = "bevel" | "miter" | "round";
-type CanvasTextAlign = "center" | "end" | "left" | "right" | "start";
-type CanvasTextBaseline = "alphabetic" | "bottom" | "hanging" | "ideographic" | "middle" | "top";
 type ClientTypes = "all" | "sharedworker" | "window" | "worker";
 type ColorSpaceConversion = "default" | "none";
 type EndingType = "native" | "transparent";
@@ -5963,7 +5845,6 @@ type IDBCursorDirection = "next" | "nextunique" | "prev" | "prevunique";
 type IDBRequestReadyState = "done" | "pending";
 type IDBTransactionMode = "readonly" | "readwrite" | "versionchange";
 type ImageOrientation = "flipY" | "none";
-type ImageSmoothingQuality = "high" | "low" | "medium";
 type KeyFormat = "jwk" | "pkcs8" | "raw" | "spki";
 type KeyType = "private" | "public" | "secret";
 type KeyUsage = "decrypt" | "deriveBits" | "deriveKey" | "encrypt" | "sign" | "unwrapKey" | "verify" | "wrapKey";
