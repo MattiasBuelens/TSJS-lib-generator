@@ -404,6 +404,7 @@
                     }
                 }
             },
+            "ReadableStreamBYOBReadResult": null,
             "ReadableStreamDefaultReadResult": null,
             "RTCConfiguration": {
                 "members": {

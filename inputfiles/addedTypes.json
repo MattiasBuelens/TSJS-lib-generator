@@ -1016,6 +1016,51 @@
                     }
                 }
             },
+            "ReadableStreamBYOBReadDoneResult": {
+                "name": "ReadableStreamBYOBReadDoneResult",
+                "typeParameters": [
+                    {
+                        "name": "T",
+                        "extends": "ArrayBufferView"
+                    }
+                ],
+                "members": {
+                    "member": {
+                        "done": {
+                            "name": "done",
+                            "overrideType": "true",
+                            "required": true
+                        },
+                        "value": {
+                            "name": "value",
+                            "overrideType": "T"
+                        }
+                    }
+                }
+            },
+            "ReadableStreamBYOBReadValueResult": {
+                "name": "ReadableStreamBYOBReadValueResult",
+                "typeParameters": [
+                    {
+                        "name": "T",
+                        "extends": "ArrayBufferView"
+                    }
+                ],
+                "members": {
+                    "member": {
+                        "done": {
+                            "name": "done",
+                            "overrideType": "false",
+                            "required": true
+                        },
+                        "value": {
+                            "name": "value",
+                            "overrideType": "T",
+                            "required": true
+                        }
+                    }
+                }
+            },
             "ReadableStreamDefaultReadDoneResult": {
                 "name": "ReadableStreamDefaultReadDoneResult",
                 "members": {
@@ -1142,6 +1187,24 @@
                         "type": "ModuleImports"
                     }
                 ]
+            },
+            {
+                "name": "ReadableStreamBYOBReadResult",
+                "typeParameters": [
+                    {
+                        "name": "T",
+                        "extends": "ArrayBufferView"
+                    }
+                ],
+                "type": [
+                    {
+                        "type": "ReadableStreamBYOBReadValueResult"
+                    },
+                    {
+                        "type": "ReadableStreamBYOBReadDoneResult"
+                    }
+                ],
+                "overrideType": "ReadableStreamBYOBReadValueResult<T> | ReadableStreamBYOBReadDoneResult<T>"
             },
             {
                 "name": "ReadableStreamDefaultReadResult",
