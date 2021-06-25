@@ -48,8 +48,6 @@
                     "nfc"
                 ]
             },
-            "ReadableStreamReaderMode": null,
-            "ReadableStreamType": null,
             "RTCStatsType": {
                 "value": [
                     "stream",
@@ -111,19 +109,6 @@
                     }
                 },
                 "implements": ["NetworkInformationSaveData"]
-            },
-            "ReadableStream": {
-                "methods": {
-                    "method": {
-                        "getReader": {
-                            "signature": {
-                                "0": {
-                                    "param": ["options"]
-                                }
-                            }
-                        }
-                    }
-                }
             },
             "ServiceWorkerGlobalScope": {
                 "properties": {
@@ -419,9 +404,7 @@
                     }
                 }
             },
-            "ReadableStreamBYOBReadResult": null,
             "ReadableStreamDefaultReadResult": null,
-            "ReadableStreamGetReaderOptions": null,
             "RTCConfiguration": {
                 "members": {
                     "member": {
@@ -593,13 +576,6 @@
                 "members": {
                     "member": {
                         "sourceCapabilities": null
-                    }
-                }
-            },
-            "UnderlyingSource": {
-                "members": {
-                    "member": {
-                        "autoAllocateChunkSize": null
                     }
                 }
             },

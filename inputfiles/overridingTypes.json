@@ -2297,11 +2297,23 @@
                 "methods": {
                     "method": {
                         "getReader": {
+                            "additionalSignatures": [
+                                "getReader(options: { mode: \"byob\" }): ReadableStreamBYOBReader",
+                                "getReader(): ReadableStreamDefaultReader<R>"
+                            ],
                             "signature": {
                                 "0": {
-                                    "overrideType": "ReadableStreamDefaultReader<R>"
+                                    "overrideType": "ReadableStreamReader<R>"
                                 }
-                            }
+                            },
+                            "force-references": [
+                                {
+                                    "type": "ReadableStreamDefaultReader"
+                                },
+                                {
+                                    "type": "ReadableStreamBYOBReader"
+                                }
+                            ]
                         },
                         "pipeThrough": {
                             "signature": {
@@ -2337,6 +2349,31 @@
                             "signature": {
                                 "0": {
                                     "overrideType": "[ReadableStream<R>, ReadableStream<R>]"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ReadableStreamBYOBReader": {
+                "methods": {
+                    "method": {
+                        "read": {
+                            "signature": {
+                                "0": {
+                                    "typeParameters": [
+                                        {
+                                            "name": "T",
+                                            "extends": "ArrayBufferView"
+                                        }
+                                    ],
+                                    "param": [
+                                        {
+                                            "name": "view",
+                                            "overrideType": "T"
+                                        }
+                                    ],
+                                    "overrideType": "Promise<ReadableStreamBYOBReadResult<T>>"
                                 }
                             }
                         }
@@ -2927,6 +2964,25 @@
                     }
                 }
             },
+            "ReadableStreamBYOBReadResult": {
+                "typeParameters": [
+                    {
+                        "name": "T",
+                        "extends": "ArrayBufferView",
+                        "default": "ArrayBufferView"
+                    }
+                ],
+                "members": {
+                    "member": {
+                        "done": {
+                            "required": 1
+                        },
+                        "value": {
+                            "overrideType": "T"
+                        }
+                    }
+                }
+            },
             "ReadableWritablePair": {
                 "typeParameters": [
                     {
@@ -2985,9 +3041,6 @@
                         },
                         "pull": {
                             "overrideType": "UnderlyingSourcePullCallback<R>"
-                        },
-                        "type": {
-                            "overrideType": "undefined"
                         }
                     }
                 }
@@ -3082,7 +3135,7 @@
     "typedefs": {
         "typedef": [
             {
-                "overrideType": "ReadableStreamDefaultController<T>",
+                "overrideType": "ReadableStreamDefaultController<T> | ReadableByteStreamController",
                 "name": "ReadableStreamController",
                 "typeParameters": [
                     {

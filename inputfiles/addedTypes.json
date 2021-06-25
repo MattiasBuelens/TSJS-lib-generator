@@ -1170,9 +1170,12 @@
                 "type": [
                     {
                         "type": "ReadableStreamDefaultReader"
+                    },
+                    {
+                        "type": "ReadableStreamBYOBReader"
                     }
                 ],
-                "overrideType": "ReadableStreamDefaultReader<T>"
+                "overrideType": "ReadableStreamDefaultReader<T> | ReadableStreamBYOBReader"
             }
         ]
     }
